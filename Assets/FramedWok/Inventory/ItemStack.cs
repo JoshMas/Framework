@@ -6,7 +6,6 @@ using UnityEngine;
 namespace FramedWok.Inventory {
     public class ItemStack : IComparable<ItemStack>
     {
-        private bool inUse = false;
         private Item item;
         private int itemCount;
         /// <summary>

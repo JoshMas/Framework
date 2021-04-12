@@ -13,12 +13,12 @@ namespace FramedWok.Inventory
 
         private List<List<ItemStack>> inventory;
 
-        private HeapSort sortingAlgorithm;
+        private HeapSortAlgorithm sortingAlgorithm;
 
         // Start is called before the first frame update
         void Start()
         {
-            sortingAlgorithm = gameObject.AddComponent<HeapSort>();
+            sortingAlgorithm = gameObject.AddComponent<HeapSortAlgorithm>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace FramedWok.Inventory
         /// <param name="unsortedList"></param>
         private List<ItemStack> SortInventory(List<ItemStack> unsortedList)
         {
-            return sortingAlgorithm.HeapSortAlgorithm(unsortedList);
+            return sortingAlgorithm.HeapSort(unsortedList);
         }
 
         /// <summary>
