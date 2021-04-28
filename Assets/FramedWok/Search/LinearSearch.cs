@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinearSearch : MonoBehaviour
+namespace FramedWok.Searching
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class LinearSearch
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        /// <summary>
+        /// Search for an item though a list from start to end
+        /// Not the most efficient, but it works on unsorted lists
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="itemToLookFor"></param>
+        /// <returns></returns>
+        public static T Search<T>(List<T> list, T itemToLookFor) where T : IComparable<T>
+        {
+            foreach(T item in list)
+            {
+                if(item.CompareTo(itemToLookFor) == 0)
+                {
+                    return item;
+                }
+            }
+            return default;
+        }
     }
 }

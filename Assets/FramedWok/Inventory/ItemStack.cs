@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FramedWok.Inventory {
     public class ItemStack : IComparable<ItemStack>
     {
         private Item item;
         private int itemCount;
+
+        public Button inventorySlot;
+
         /// <summary>
         /// Compares the two items using their names
         /// </summary>
@@ -23,6 +27,14 @@ namespace FramedWok.Inventory {
             {
                 return itemCount.CompareTo(other.itemCount);
             }
+        }
+
+        /// <summary>
+        /// Check if the item stack is full
+        /// </summary>
+        public bool IsStackFull()
+        {
+            return item.OverMaximum(itemCount);
         }
     }
 }

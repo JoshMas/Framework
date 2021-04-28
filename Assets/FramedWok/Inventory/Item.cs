@@ -16,13 +16,23 @@ namespace FramedWok.Inventory
         /// </summary>
         [SerializeField] private string itemName;
 
+        [SerializeField] private Sprite itemSprite;
+
         /// <summary>
         /// Compares the two items using their names
         /// </summary>
-        /// <returns>-1 if the first number is smaller, 1 if it is larger, and 0 if they are equal</returns>
+        /// <returns>-1 if the first item is sorted lower, 1 for higher, and 0 if they are equal</returns>
         public int CompareTo(Item other)
         {
             return name.CompareTo(other.itemName);
+        }
+
+        /// <summary>
+        /// Check if a value is over the number of items that fit in one stack
+        /// </summary>
+        public bool OverMaximum(int amount)
+        {
+            return amount > maximumStack;
         }
     }
 }
