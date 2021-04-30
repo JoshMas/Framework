@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class PlayerControllerEditor : MonoBehaviour
+namespace FramedWok.PlayerController
 {
-    // Start is called before the first frame update
-    void Start()
+    [CustomEditor(typeof(FirstPersonPlatformerController))]
+    public class PlayerControllerEditor : Editor
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private FirstPersonPlatformerController controller;
     }
 }

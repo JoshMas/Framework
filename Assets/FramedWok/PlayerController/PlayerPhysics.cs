@@ -10,7 +10,8 @@ namespace FramedWok.PlayerController
         private Rigidbody playerRigidbody;
         private Collider playerCollider;
 
-        private Vector3 appliedLinearVelocity = Vector3.zero;
+        [SerializeField] private float maxVelocity = 10.0f;
+        [SerializeField, Tooltip("This value should be slightly more than half your player model's height")] private float groundCheckLength = 1.05f;
 
         private void Awake()
         {
@@ -21,15 +22,36 @@ namespace FramedWok.PlayerController
                 playerCollider = gameObject.AddComponent<CapsuleCollider>();
         }
 
-        public void SetVelocity(Vector3 velocity)
+        public void AddGroundAcceleration(Vector3 acceleration)
         {
-            appliedLinearVelocity += velocity;
+            playerRigidbody.AddForce(acceleration, ForceMode.VelocityChange);
+            RestrictVelocity();
+        }
+
+        public void RestrictVelocity()
+        {
+            playerRigidbody.velocity = Vector3.ClampMagnitude(playerRigidbody.velocity, maxVelocity);
         }
 
         public void Rotate(Vector3 rotation)
         {
-            transform.localEulerAngles = rotation;
+            transform.localEulerAngles = new Vector3(0, rotation.y, 0);
+            Camera.main.transform.localEulerAngles = new Vector3(rotation.x, 0, 0);
+        }
 
+        public void Jump(float jumpStrength)
+        {
+            playerRigidbody.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+        }
+
+        public void Dash(Vector3 direction, float dashStrength, float dashDuration)
+        {
+
+        }
+
+        public bool IsGrounded()
+        {
+            return Physics.Raycast(transform.position, Vector3.down, groundCheckLength);
         }
     }
 }

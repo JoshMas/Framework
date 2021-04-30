@@ -31,7 +31,7 @@ public class SortAndSearchTest : MonoBehaviour
             sortedList += item;
         }
         Debug.Log(sortedList);
-        string itemToLookFor = Random.Range(0, 100) + "";
+        string itemToLookFor = Random.Range(0, 100) + ", ";
         Debug.Log(itemToLookFor);
         Debug.Log(BinarySearch.Search(list,itemToLookFor));
     }

@@ -15,16 +15,16 @@ namespace FramedWok.PlayerController
         public KeyCode dashKey = KeyCode.LeftShift;
         [SerializeField] private Vector2 mouseSensitivity = new Vector2(5.0f, 2.0f);
 
-        public Vector2 GetGroundMovementVector()
+        public Vector3 GetGroundMovementVector()
         {
-            return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            return (transform.TransformPoint(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))) - transform.position).normalized;
         }
 
         public Vector3 GetCameraRotation()
         {
             Vector3 rotation = Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity.x - Vector3.right * Input.GetAxis("Mouse Y") * mouseSensitivity.y;
-            rotation += transform.localEulerAngles;
-            rotation.Set(rotation.x, rotation.y, 0);
+            rotation += Camera.main.transform.eulerAngles;
+            //rotation.Set(rotation.x, rotation.y, 0);
             return rotation;
         }
     }
