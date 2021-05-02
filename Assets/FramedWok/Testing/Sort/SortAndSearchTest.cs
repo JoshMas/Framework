@@ -1,6 +1,5 @@
 using FramedWok.Sorting;
 using FramedWok.Searching;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,9 @@ public class SortAndSearchTest : MonoBehaviour
             Test();
     }
 
+    /// <summary>
+    /// Tests the heap sort function first, then the binary search function
+    /// </summary>
     private void Test()
     {
         List<string> list = new List<string>();

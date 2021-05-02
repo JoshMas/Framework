@@ -9,6 +9,11 @@ namespace FramedWok.Sorting
     {
         private static int marker = 0;
 
+        /// <summary>
+        /// Sorts a list using the heap sort algorithm
+        /// </summary>
+        /// <param name="list">The list to sort</param>
+        /// <returns>The sorted list</returns>
         public static List<T> HeapSort<T>(List<T> list) where T : IComparable<T>
         {
             BuildMaxHeap(list);
@@ -21,6 +26,9 @@ namespace FramedWok.Sorting
             return list;
         }
 
+        /// <summary>
+        /// Forms the whole list into a heap
+        /// </summary>
         private static void BuildMaxHeap<T>(List<T> list) where T : IComparable<T>
         {
             marker = list.Count;
@@ -30,6 +38,11 @@ namespace FramedWok.Sorting
             }
         }
 
+        /// <summary>
+        /// Ensures that an item in the list satisfies the heap property
+        /// Any item in the list is either the biggest item, or has a parent that is bigger
+        /// Each item can have up to two children.
+        /// </summary>
         private static void Heapify<T>(List<T> list, int index) where T : IComparable<T>
         {
             int left = (2 * (index + 1)) - 1;
@@ -56,6 +69,9 @@ namespace FramedWok.Sorting
             }
         }
 
+        /// <summary>
+        /// Swap two items in a list
+        /// </summary>
         private static void Swap<T>(List<T> list, int a, int b) where T : IComparable<T>
         {
             T temp = list[a];
